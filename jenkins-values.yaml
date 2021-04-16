@@ -61,10 +61,10 @@ controller:
   resources:
     requests:
       cpu: "50m"
-      memory: "256Mi"
+      memory: "512Mi"
     limits:
       cpu: "2000m"
-      memory: "512Mi"
+      memory: "4096Mi"
   # Environment variables that get added to the init container (useful for e.g. http_proxy)
   # initContainerEnv:
   #   - name: http_proxy
@@ -416,7 +416,7 @@ agent:
       memory: "256Mi"
     limits:
       cpu: "512m"
-      memory: "256Mi"
+      memory: "512Mi"
   # You may want to change this to true while testing a new image
   alwaysPullImage: false
   # Controls how agent pods are retained after the Jenkins build completes
