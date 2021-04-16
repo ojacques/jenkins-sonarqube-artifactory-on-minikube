@@ -64,7 +64,7 @@ controller:
       memory: "256Mi"
     limits:
       cpu: "2000m"
-      memory: "4096Mi"
+      memory: "512Mi"
   # Environment variables that get added to the init container (useful for e.g. http_proxy)
   # initContainerEnv:
   #   - name: http_proxy
@@ -161,7 +161,7 @@ controller:
   # List of plugins to be install during Jenkins controller start
   installPlugins:
     - kubernetes
-#    - workflow-aggregator:2.6
+    - pipeline
     - git
     - configuration-as-code
 
@@ -413,10 +413,10 @@ agent:
   resources:
     requests:
       cpu: "512m"
-      memory: "512Mi"
+      memory: "256Mi"
     limits:
       cpu: "512m"
-      memory: "512Mi"
+      memory: "256Mi"
   # You may want to change this to true while testing a new image
   alwaysPullImage: false
   # Controls how agent pods are retained after the Jenkins build completes
