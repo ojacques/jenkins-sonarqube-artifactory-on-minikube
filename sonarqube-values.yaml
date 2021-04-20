@@ -1,0 +1,465 @@
+OpenShift:
+  createSCC: true
+  enabled: false
+affinity: {}
+annotations: {}
+containerSecurityContext:
+  runAsUser: 1000
+deploymentStrategy: {}
+elasticsearch:
+  bootstrapChecks: true
+  configureNode: true
+emptyDir: {}
+extraConfig:
+  configmaps: []
+  secrets: []
+extraInitContainers: {}
+hostAliases: []
+image:
+  pullPolicy: IfNotPresent
+  repository: sonarqube
+  tag: 8.5.1-community
+ingress:
+  annotations: {}
+  enabled: false
+  hosts:
+  - name: sonar.organization.com
+    path: /
+  tls: []
+initContainers:
+  resources: {}
+initSysctl:
+  enabled: true
+  fsFileMax: 131072
+  nofile: 131072
+  nproc: 8192
+  securityContext:
+    privileged: true
+  vmMaxMapCount: 524288
+jdbcDatabaseType: postgresql
+jvmOpts: ""
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  sonarWebContext: /
+nodeSelector: {}
+persistence:
+  accessMode: ReadWriteOnce
+  annotations: {}
+  enabled: false
+  mounts: []
+  size: 10Gi
+  storageClass: null
+  volumes: []
+plugins:
+  install: []
+  lib: []
+  noCheckCertificate: false
+podLabels: {}
+postgresql:
+  enabled: true
+  extraEnv: []
+  global:
+    postgresql: {}
+  image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 11.7.0-debian-10-r26
+  ldap:
+    baseDN: ""
+    bind_password: null
+    bindDN: ""
+    enabled: false
+    port: ""
+    prefix: ""
+    scheme: ""
+    search_attr: ""
+    search_filter: ""
+    server: ""
+    suffix: ""
+    tls: false
+    url: ""
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  master:
+    affinity: {}
+    annotations: {}
+    extraInitContainers: |
+      # - name: do-something
+      #   image: busybox
+      #   command: ['do', 'something']
+    extraVolumeMounts: []
+    extraVolumes: []
+    labels: {}
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
+    priorityClassName: ""
+    sidecars: []
+    tolerations: []
+  metrics:
+    enabled: false
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: bitnami/postgres-exporter
+      tag: 0.8.0-debian-10-r42
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    prometheusRule:
+      additionalLabels: {}
+      enabled: false
+      namespace: ""
+      rules: []
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    securityContext:
+      enabled: false
+      runAsUser: 1001
+    service:
+      annotations:
+        prometheus.io/port: "9187"
+        prometheus.io/scrape: "true"
+      loadBalancerIP: null
+      type: ClusterIP
+    serviceMonitor:
+      additionalLabels: {}
+      enabled: false
+  networkPolicy:
+    allowExternal: true
+    enabled: false
+  persistence:
+    accessMode: ReadWriteOnce
+    accessModes:
+    - ReadWriteOnce
+    annotations: {}
+    enabled: false
+    mountPath: /bitnami/postgresql
+    size: 20Gi
+    storageClass: null
+    subPath: ""
+  postgresqlDataDir: /bitnami/postgresql/data
+  postgresqlDatabase: sonarDB
+  postgresqlPassword: sonarPass
+  postgresqlUsername: sonarUser
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replication:
+    applicationName: my_application
+    enabled: false
+    numSynchronousReplicas: 0
+    password: repl_password
+    slaveReplicas: 1
+    synchronousCommit: "off"
+    user: repl_user
+  resources:
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  service:
+    annotations: {}
+    port: 5432
+    type: ClusterIP
+  serviceAccount:
+    enabled: false
+  shmVolume:
+    chmod:
+      enabled: false
+    enabled: true
+  slave:
+    affinity: {}
+    annotations: {}
+    extraInitContainers: |
+      # - name: do-something
+      #   image: busybox
+      #   command: ['do', 'something']
+    extraVolumeMounts: []
+    extraVolumes: []
+    labels: {}
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
+    priorityClassName: ""
+    sidecars: []
+    tolerations: []
+  updateStrategy:
+    type: RollingUpdate
+  volumePermissions:
+controlplane $ cat sonarqube-values.yaml 
+COMPUTED VALUES:
+OpenShift:
+  createSCC: true
+  enabled: false
+affinity: {}
+annotations: {}
+containerSecurityContext:
+  runAsUser: 1000
+deploymentStrategy: {}
+elasticsearch:
+  bootstrapChecks: true
+  configureNode: true
+emptyDir: {}
+extraConfig:
+  configmaps: []
+  secrets: []
+extraInitContainers: {}
+hostAliases: []
+image:
+  pullPolicy: IfNotPresent
+  repository: sonarqube
+  tag: 8.5.1-community
+ingress:
+  annotations: {}
+  enabled: false
+  hosts:
+  - name: sonar.organization.com
+    path: /
+  tls: []
+initContainers:
+  resources: {}
+initSysctl:
+  enabled: true
+  fsFileMax: 131072
+  nofile: 131072
+  nproc: 8192
+  securityContext:
+    privileged: true
+  vmMaxMapCount: 524288
+jdbcDatabaseType: postgresql
+jvmOpts: ""
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  sonarWebContext: /
+nodeSelector: {}
+persistence:
+  accessMode: ReadWriteOnce
+  annotations: {}
+  enabled: false
+  mounts: []
+  size: 10Gi
+  storageClass: null
+  volumes: []
+plugins:
+  install: []
+  lib: []
+  noCheckCertificate: false
+podLabels: {}
+postgresql:
+  enabled: true
+  extraEnv: []
+  global:
+    postgresql: {}
+  image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 11.7.0-debian-10-r26
+  ldap:
+    baseDN: ""
+    bind_password: null
+    bindDN: ""
+    enabled: false
+    port: ""
+    prefix: ""
+    scheme: ""
+    search_attr: ""
+    search_filter: ""
+    server: ""
+    suffix: ""
+    tls: false
+    url: ""
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  master:
+    affinity: {}
+    annotations: {}
+    extraInitContainers: |
+      # - name: do-something
+      #   image: busybox
+      #   command: ['do', 'something']
+    extraVolumeMounts: []
+    extraVolumes: []
+    labels: {}
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
+    priorityClassName: ""
+    sidecars: []
+    tolerations: []
+  metrics:
+    enabled: false
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: bitnami/postgres-exporter
+      tag: 0.8.0-debian-10-r42
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    prometheusRule:
+      additionalLabels: {}
+      enabled: false
+      namespace: ""
+      rules: []
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    securityContext:
+      enabled: false
+      runAsUser: 1001
+    service:
+      annotations:
+        prometheus.io/port: "9187"
+        prometheus.io/scrape: "true"
+      loadBalancerIP: null
+      type: ClusterIP
+    serviceMonitor:
+      additionalLabels: {}
+      enabled: false
+  networkPolicy:
+    allowExternal: true
+    enabled: false
+  persistence:
+    accessMode: ReadWriteOnce
+    accessModes:
+    - ReadWriteOnce
+    annotations: {}
+    enabled: true
+    mountPath: /bitnami/postgresql
+    size: 20Gi
+    storageClass: null
+    subPath: ""
+  postgresqlDataDir: /bitnami/postgresql/data
+  postgresqlDatabase: sonarDB
+  postgresqlPassword: sonarPass
+  postgresqlUsername: sonarUser
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replication:
+    applicationName: my_application
+    enabled: false
+    numSynchronousReplicas: 0
+    password: repl_password
+    slaveReplicas: 1
+    synchronousCommit: "off"
+    user: repl_user
+  resources:
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  service:
+    annotations: {}
+    port: 5432
+    type: ClusterIP
+  serviceAccount:
+    enabled: false
+  shmVolume:
+    chmod:
+      enabled: false
+    enabled: true
+  slave:
+    affinity: {}
+    annotations: {}
+    extraInitContainers: |
+      # - name: do-something
+      #   image: busybox
+      #   command: ['do', 'something']
+    extraVolumeMounts: []
+    extraVolumes: []
+    labels: {}
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
+    priorityClassName: ""
+    sidecars: []
+    tolerations: []
+  updateStrategy:
+    type: RollingUpdate
+  volumePermissions:
+    enabled: false
+    image:
+      pullPolicy: Always
+      registry: docker.io
+      repository: bitnami/minideb
+      tag: buster
+    securityContext:
+      runAsUser: 0
+readinessProbe:
+  failureThreshold: 6
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  sonarWebContext: /
+replicaCount: 1
+resources: {}
+securityContext:
+  fsGroup: 1000
+service:
+  annotations: {}
+  externalPort: 9000
+  internalPort: 9000
+  labels: null
+  type: ClusterIP
+serviceAccount:
+  annotations: {}
+  create: false
+sonarqubeFolder: /opt/sonarqube
+terminationGracePeriodSeconds: 60
+tests:
+  enabled: true
+tolerations: []
