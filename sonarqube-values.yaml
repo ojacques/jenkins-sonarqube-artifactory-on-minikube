@@ -236,7 +236,7 @@ service:
   externalPort: 9000
   internalPort: 9000
   labels: null
-  type: ClusterIP
+  type: NodePort
 serviceAccount:
   annotations: {}
   create: false
