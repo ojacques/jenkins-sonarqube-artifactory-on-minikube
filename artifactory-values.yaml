@@ -352,3 +352,5 @@ artifactory:
     uid: 104
 postgresql:
   enabled: true
+  persistence:
+    enabled: false
